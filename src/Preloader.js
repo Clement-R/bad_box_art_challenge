@@ -30,8 +30,13 @@ BasicGame.Preloader.prototype = {
 		this.load.bitmapFont('caslon', 'fonts/caslon.png', 'fonts/caslon.xml');*/
 		//	+ lots of other required assets here
 
+		// Sprites and animations
 		this.load.image('player', '../character.png');
-		this.load.image('player_shot', '../player_shot.png');
+		this.load.image('playerShot', '../player_shot.png');
+
+		// Audio effects
+		this.load.audio('playerShootSound', ['../Laser_Shoot49.mp3']);
+		// this.load.audio('playerShootSound', ['../Cool sound.mp3']);
 	},
 
 	create: function () {
@@ -52,13 +57,12 @@ BasicGame.Preloader.prototype = {
 		//	If you don't have any music in your game then put the game.state.start line into the create function and delete
 		//	the update function completely.
 
-		/*if (this.cache.isSoundDecoded('titleMusic') && this.ready == false)
-		{
+		if (this.cache.isSoundDecoded('playerShootSound') && this.ready == false) {
 			this.ready = true;
 			this.state.start('MainMenu');
-		}*/
+		}
 
-		this.state.start('MainMenu');
+		// this.state.start('MainMenu');
 	}
 
 };
