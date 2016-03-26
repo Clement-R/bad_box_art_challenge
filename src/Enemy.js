@@ -31,3 +31,7 @@ Enemy.prototype.fire = function() {
     var y = this.y + 26;
     this.currentWeapon.fire(x, y);
 };
+
+Enemy.prototype.kill = function(first_argument) {
+    this.destroy();
+};
