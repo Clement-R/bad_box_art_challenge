@@ -20,11 +20,16 @@ BasicGame.Game = function (game) {
     this.rnd;       //  the repeatable random number generator (Phaser.RandomDataGenerator)
 
     this.speed = 300;
-};
+    this.weapons = [];
+;};
 
 BasicGame.Game.prototype = {
     create: function () {
-        // this.game.renderer.renderSession.roundPixels = true;
+        // Set background color and rendering method
+        this.stage.backgroundColor = "#3498db"
+        this.game.renderer.renderSession.roundPixels = true;
+
+        // Start physic system
         this.physics.startSystem(Phaser.Physics.ARCADE);
 
         //  Create cursor keys to move and spacebar to shoot
@@ -32,9 +37,15 @@ BasicGame.Game.prototype = {
         this.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
         // Create player and add physic body and collision with world bounds
-        this.player = new Player(this, 'player');
+        this.player = new Player(this, 'player', this.weapons);
         this.physics.arcade.enable(this.player);
-        this.player.body.collideWorldBounds = true;
+        this.player.setPhysic();
+
+        // Create weapons
+        this.weapons.push(new Weapon.SingleBullet(this));
+
+        // Assign the basic weapon to the player
+        this.player.addWeapon(this.weapons[0]);
     },
 
     update: function () {

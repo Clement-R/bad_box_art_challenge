@@ -1,7 +1,16 @@
 Player = function (game, key) {
     Phaser.Sprite.call(this, game, 100, 100, key);
+
+    this.weapons = [];
+    this.currentWeapon = null;
+
+    // Add key to change weapon
+    var changeKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+    changeKey.onDown.add(this.changeWeapon, this, 1);
+
     game.add.existing(this);
 };
+
 Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
@@ -25,6 +34,45 @@ Player.prototype.update = function() {
     }
 
     if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-        // this.weapons[this.currentWeapon].fire(this.player);
+    	var x = this.x + 57;
+    	var y = this.y + 41;
+        this.currentWeapon.fire(x, y);
     }
+};
+
+Player.prototype.setPhysic = function(first_argument) {
+	this.body.collideWorldBounds = true;
+};
+
+Player.prototype.addWeapon = function(weapon) {
+	// Add weapon to player's weapons list
+	this.weapons.push(weapon);
+
+	// If the player doesn't already have a weapon, we set this one by default
+	if(this.currentWeapon == null) {
+		this.currentWeapon = this.weapons[0];
+	}
+};
+
+Player.prototype.changeWeapon = function(direction) {
+	console.log('Change weapon');
+	var currentWeaponIndex = this.weapons.indexOf(this.currentWeapon);
+
+	// if direction is 1 we take next weapon
+	if(direction == 1) {
+		if((currentWeaponIndex + 1) < this.weapons.length) {
+			this.currentWeapon = this.weapons[currentWeaponIndex + 1];
+		} else {
+			this.currentWeapon = this.weapons[0];
+		}
+	}
+
+	// if direction is -1 we take previous weapon
+	if(direction == -1) {
+		if((currentWeaponIndex - 1) >= 0) {
+			this.currentWeapon = this.weapons[currentWeaponIndex - 1];
+		} else {
+			this.currentWeapon = this.weapons[this.weapons.length - 1];
+		}
+	}
 };

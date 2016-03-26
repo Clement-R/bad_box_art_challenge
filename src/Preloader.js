@@ -31,6 +31,7 @@ BasicGame.Preloader.prototype = {
 		//	+ lots of other required assets here
 
 		this.load.image('player', '../character.png');
+		this.load.image('player_shot', '../player_shot.png');
 	},
 
 	create: function () {
