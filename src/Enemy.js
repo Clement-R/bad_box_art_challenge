@@ -1,10 +1,10 @@
-Enemy = function (game, key) {
-    Phaser.Sprite.call(this, game, 100, 100, key);
+Enemy = function (game, key, x, y, weapon) {
+    Phaser.Sprite.call(this, game, x, y, key);
 
     this.checkWorldBounds = true;
     this.outOfBoundsKill = true;
-
-    this.currentWeapon = null;
+    this.speed = 100;
+    this.currentWeapon = weapon;
 
     game.add.existing(this);
 };
@@ -12,22 +12,24 @@ Enemy = function (game, key) {
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
 Enemy.prototype.constructor = Enemy;
 
+Enemy.prototype.startMovement = function() {
+    tween = this.game.add.tween(this);
+    // to(properties, duration,
+    //    ease, autoStart, delay, repeat, yoyo)
+
+    tween.to({y: this.game.world.height - this.height}, 1500,
+             Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
+
+    this.body.velocity.x = -this.speed;
+};
+
 Enemy.prototype.update = function() {
-    // Set velocity to 0
-    // this.body.velocity.set(0);
-};
-
-Enemy.prototype.setPhysic = function(first_argument) {
-	this.body.collideWorldBounds = true;
-};
-
-Enemy.prototype.move = function() {
-    // this.body.velocity.x = -this.game.speed;
+    this.fire();
 };
 
 Enemy.prototype.fire = function() {
-    var x = this.x + 57;
-    var y = this.y + 41;
+    var x = this.x + 3;
+    var y = this.y + 26;
     this.currentWeapon.fire(x, y);
 };
 
