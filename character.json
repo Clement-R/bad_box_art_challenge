@@ -1,0 +1,31 @@
+{ "frames": {
+   "character.ase": {
+    "frame": { "x": 0, "y": 0, "w": 60, "h": 60 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 60, "h": 60 },
+    "sourceSize": { "w": 60, "h": 60 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.1.3",
+  "image": "E:\\_Dev\\Gamedev\\Bad_Box_Art_challenge\\character.png",
+  "format": "I8",
+  "size": { "w": 60, "h": 60 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Window_fillage", "opacity": 255, "blendMode": "normal" },
+   { "name": "Ship_outter", "opacity": 255, "blendMode": "normal" },
+   { "name": "Ship_fillage", "opacity": 255, "blendMode": "normal" },
+   { "name": "Window", "opacity": 255, "blendMode": "normal" },
+   { "name": "Princess", "opacity": 255, "blendMode": "normal" },
+   { "name": "Ship_top", "opacity": 255, "blendMode": "normal" },
+   { "name": "Ship_weapon", "opacity": 255, "blendMode": "normal" },
+   { "name": "Weapon", "opacity": 255, "blendMode": "normal" }
+  ]
+ }
+}
