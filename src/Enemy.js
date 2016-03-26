@@ -27,8 +27,8 @@ Enemy.prototype.update = function() {
 };
 
 Enemy.prototype.fire = function() {
-    var x = this.x + 3;
-    var y = this.y + 26;
+    var x = this.x + 8;
+    var y = this.y + 39;
     this.currentWeapon.fire(x, y);
 };
 

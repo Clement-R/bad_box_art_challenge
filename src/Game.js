@@ -27,13 +27,19 @@ BasicGame.Game = function (game) {
 
 BasicGame.Game.prototype = {
     create: function () {
+        // Show background
+
+        // Launch main theme
+        this.music = this.add.audio('mainTheme', 0.65, true);
+        this.music.play();
+
         // Set background color and rendering method
         this.stage.backgroundColor = "#3498db"
         this.game.renderer.renderSession.roundPixels = true;
 
         // Set sounds
         this.playerShootSound = this.game.add.audio('playerShootSound');
-        this.playerShootSound.volume = 0.2;
+        this.playerShootSound.volume = 0.5;
 
         // Start physic system
         this.physics.startSystem(Phaser.Physics.ARCADE);

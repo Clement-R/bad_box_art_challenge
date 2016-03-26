@@ -13,13 +13,15 @@ BasicGame.Preloader.prototype = {
 	preload: function () {
 		// Sprites and animations
 		this.load.image('player', '../character.png');
-		this.load.image('smallEnemy', '../small_enemy.png');
+		this.load.image('smallEnemy', '../small_enemy_2.png');
 		this.load.image('playerShot', '../player_shot.png');
+		this.load.image('background', '../background.png');
 		this.load.image('enemyShot', '../enemy_shot.png');
 
 		// Audio effects
 		this.load.audio('playerShootSound', ['../Laser_Shoot49.mp3']);
 		// this.load.audio('playerShootSound', ['../Cool sound.mp3']);
+		this.load.audio('mainTheme', ['../Venus.mp3']);
 	},
 
 	create: function () {
@@ -30,7 +32,7 @@ BasicGame.Preloader.prototype = {
 
 	update: function () {
 		// Decode MP3 files
-		if (this.cache.isSoundDecoded('playerShootSound') && this.ready == false) {
+		if (this.cache.isSoundDecoded('playerShootSound') && this.cache.isSoundDecoded('mainTheme') && this.ready == false) {
 			this.ready = true;
 			this.state.start('MainMenu');
 		}
