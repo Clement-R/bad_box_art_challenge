@@ -22,6 +22,8 @@ BasicGame.Game = function (game) {
     this.speed = 300;
     this.weapons = [];
     this.enemyWeapons = [];
+    this.player = null;
+    this.enemies = null;
 ;};
 
 BasicGame.Game.prototype = {
@@ -58,29 +60,18 @@ BasicGame.Game.prototype = {
         this.player.addWeapon(this.weapons[0]);
 
         // Create enemies
-        /*
-        this.enemyPool = this.add.group();
-        this.enemyPool.enableBody = true;
-        this.enemyPool.physicsBodyType = Phaser.Physics.ARCADE;
-        this.enemyPool.createMultiple(1, 'smallEnemy');
-        this.enemyPool.setAll('anchor.x', 0.5);
-        this.enemyPool.setAll('anchor.y', 0.5);
-        this.enemyPool.setAll('checkWorldBounds', true);
-        this.enemyPool.setAll('outOfBoundsKill', true);
-        this.nextEnemyAt = 0;
-        this.enemyDelay = 1000;
+        this.enemies = this.add.group();
+        this.time.events.repeat(Phaser.Timer.SECOND / 2, 5, this.spawnEnemy, this);
+    },
 
-        this.enemy = this.enemyPool.getFirstExists(false);
-        this.enemy.reset(800, 20);
-        this.enemy.body.velocity.x = -75;
 
-        tween = this.add.tween(this.enemy);
-        // to(properties, duration, ease, autoStart, delay, repeat, yoyo)
-        tween.to({y: 360}, 2000, Phaser.Easing.Sinusoidal.InOut, true, 0, -1, true);
-        */
-        this.enemy = new Enemy(this, 'smallEnemy', 800, 0, this.enemyWeapons[0]);
-        this.physics.arcade.enable(this.enemy);
-        this.enemy.startMovement();
+    spawnEnemy: function() {
+        // Create an enemy and make it start to move
+        var enemy = new Enemy(this, 'smallEnemy', 800, 0,
+                              5, this.enemyWeapons[0]);
+        this.physics.arcade.enable(enemy);
+        enemy.startMovement();
+        this.enemies.add(enemy)
     },
 
     update: function () {
