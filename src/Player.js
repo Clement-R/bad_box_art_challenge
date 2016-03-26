@@ -39,6 +39,15 @@ Player.prototype.update = function() {
     	var y = this.y + 41;
         this.currentWeapon.fire(x, y);
     }
+
+    this.game.physics.arcade.overlap(this,
+									 this.game.enemies,
+									 function(player, enemy) {
+									 	player.damage(5);
+									 	enemy.kill();
+									 },
+									 null,
+									 this);
 };
 
 Player.prototype.setPhysic = function(first_argument) {
