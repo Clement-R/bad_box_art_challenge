@@ -18,9 +18,11 @@ Bullet.prototype = Object.create(Phaser.Sprite.prototype);
 Bullet.prototype.constructor = Bullet;
 
 Bullet.prototype.update = function() {
+	// Collision between this.game.player & this
 };
 
 Bullet.prototype.fire = function (x, y, angle, speed, gx, gy) {
+    // Gravity for wave pattern
     gx = gx || 0;
     gy = gy || 0;
 
