@@ -22,7 +22,6 @@ BasicGame.Game = function (game) {
 
     //  You can use any of these from any function within this State.
     //  But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
-
 };
 
 BasicGame.Game.prototype = {
@@ -30,7 +29,8 @@ BasicGame.Game.prototype = {
     create: function () {
 
         //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
-
+        this.player = this.add.sprite(100, 100, 'player');
+        console.log('hello');
     },
 
     update: function () {
@@ -45,7 +45,7 @@ BasicGame.Game.prototype = {
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
 
         //  Then let's go back to the main menu.
-        this.state.start('MainMenu');
+        // this.state.start('MainMenu');
 
     }
 
