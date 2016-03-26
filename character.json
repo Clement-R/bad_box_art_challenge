@@ -24,8 +24,8 @@
    { "name": "Window", "opacity": 255, "blendMode": "normal" },
    { "name": "Princess", "opacity": 255, "blendMode": "normal" },
    { "name": "Ship_top", "opacity": 255, "blendMode": "normal" },
-   { "name": "Ship_weapon", "opacity": 255, "blendMode": "normal" },
-   { "name": "Weapon", "opacity": 255, "blendMode": "normal" }
+   { "name": "Weapon_not_green", "opacity": 255, "blendMode": "normal" },
+   { "name": "Weapon", "opacity": 62, "blendMode": "normal" }
   ]
  }
 }
