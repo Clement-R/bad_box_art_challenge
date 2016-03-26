@@ -1,4 +1,3 @@
-
 BasicGame.Game = function (game) {
 
     //  When a State is added to Phaser it automatically has the following properties set on it, even if they already exist:
@@ -20,23 +19,48 @@ BasicGame.Game = function (game) {
     this.physics;   //  the physics manager (Phaser.Physics)
     this.rnd;       //  the repeatable random number generator (Phaser.RandomDataGenerator)
 
-    //  You can use any of these from any function within this State.
-    //  But do consider them as being 'reserved words', i.e. don't create a property for your own game called "world" or you'll over-write the world reference.
+    this.speed = 300;
 };
 
 BasicGame.Game.prototype = {
-
     create: function () {
+        // this.game.renderer.renderSession.roundPixels = true;
+        this.physics.startSystem(Phaser.Physics.ARCADE);
 
-        //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
+        // Create player and add physic body and collision with world bounds
         this.player = this.add.sprite(100, 100, 'player');
-        console.log('hello');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
+
+        //  Cursor keys to move and shoot
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
     },
 
     update: function () {
 
-        //  Honestly, just about anything could go here. It's YOUR game after all. Eat your heart out!
+        // Set player velocity to 0
+        this.player.body.velocity.set(0);
 
+        // Check for input to move
+        if (this.cursors.left.isDown) {
+            this.player.body.velocity.x = -this.speed;
+        }
+        else if (this.cursors.right.isDown) {
+            this.player.body.velocity.x = this.speed;
+        }
+
+        if (this.cursors.up.isDown) {
+            this.player.body.velocity.y = -this.speed;
+        }
+        else if (this.cursors.down.isDown) {
+            this.player.body.velocity.y = this.speed;
+        }
+
+        // Check for input to shoot
+        if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+            this.weapons[this.currentWeapon].fire(this.player);
+        }
     },
 
     quitGame: function (pointer) {
