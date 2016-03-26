@@ -17,6 +17,7 @@ BasicGame.Preloader.prototype = {
 		this.load.image('playerShot', '../player_shot.png');
 		this.load.image('background', '../background.png');
 		this.load.image('enemyShot', '../enemy_shot.png');
+		this.load.image('healthBar', '../health.png');
 
 		// Audio effects
 		this.load.audio('playerShootSound', ['../Laser_Shoot49.mp3']);

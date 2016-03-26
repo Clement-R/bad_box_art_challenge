@@ -54,6 +54,10 @@ BasicGame.Game.prototype = {
         this.physics.arcade.enable(this.player);
         this.player.setPhysic();
 
+        // Create health bar UI
+        this.healthBar = [];
+        this.createHealthUI();
+
         // Create player's weapons
         // [0] : Single Bullet
         this.weapons.push(new Weapon.SingleBullet(this));
@@ -66,6 +70,25 @@ BasicGame.Game.prototype = {
         this.time.events.repeat(Phaser.Timer.SECOND / 2, 5, this.spawnEnemy, this);
     },
 
+    createHealthUI: function() {
+        var remainingHealth = this.player.health;
+
+        for (var i = 0; i < remainingHealth; i++) {
+            this.healthBar[i] = this.add.sprite(10 + (10 * i), 10, "healthBar");
+        }
+    },
+
+    updateHealthUI: function() {
+        var remainingHealth = this.player.health;
+
+        for (var i = 0; i < this.healthBar.length; i++) {
+            this.healthBar[i].visible = false;
+        }
+
+        for (var i = 0; i < remainingHealth; i++) {
+            this.healthBar[i].visible = true;
+        }
+    },
 
     spawnEnemy: function() {
         // Create an enemy and make it start to move

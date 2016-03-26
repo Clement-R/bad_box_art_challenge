@@ -77,3 +77,16 @@ Player.prototype.changeWeapon = function(direction) {
 		}
 	}
 };
+
+Player.prototype.damage = function(amount) {
+	// Phaser.Sprite.call(this, amount);
+	if (this.alive) {
+        this.health -= amount;
+
+        if (this.health <= 0) {
+            this.kill();
+        }
+    }
+
+	this.game.updateHealthUI();
+};
