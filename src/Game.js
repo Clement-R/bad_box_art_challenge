@@ -27,40 +27,17 @@ BasicGame.Game.prototype = {
         // this.game.renderer.renderSession.roundPixels = true;
         this.physics.startSystem(Phaser.Physics.ARCADE);
 
-        // Create player and add physic body and collision with world bounds
-        this.player = this.add.sprite(100, 100, 'player');
-        this.physics.arcade.enable(this.player);
-        this.player.body.collideWorldBounds = true;
-
-        //  Cursor keys to move and shoot
+        //  Create cursor keys to move and spacebar to shoot
         this.cursors = this.input.keyboard.createCursorKeys();
         this.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
+
+        // Create player and add physic body and collision with world bounds
+        this.player = new Player(this, 'player');
+        this.physics.arcade.enable(this.player);
+        this.player.body.collideWorldBounds = true;
     },
 
     update: function () {
-
-        // Set player velocity to 0
-        this.player.body.velocity.set(0);
-
-        // Check for input to move
-        if (this.cursors.left.isDown) {
-            this.player.body.velocity.x = -this.speed;
-        }
-        else if (this.cursors.right.isDown) {
-            this.player.body.velocity.x = this.speed;
-        }
-
-        if (this.cursors.up.isDown) {
-            this.player.body.velocity.y = -this.speed;
-        }
-        else if (this.cursors.down.isDown) {
-            this.player.body.velocity.y = this.speed;
-        }
-
-        // Check for input to shoot
-        if (this.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-            this.weapons[this.currentWeapon].fire(this.player);
-        }
     },
 
     quitGame: function (pointer) {
@@ -68,9 +45,8 @@ BasicGame.Game.prototype = {
         //  Here you should destroy anything you no longer need.
         //  Stop music, delete sprites, purge caches, free resources, all that good stuff.
 
-        //  Then let's go back to the main menu.
-        // this.state.start('MainMenu');
-
+        //  Go back to the main menu
+        this.state.start('MainMenu');
     }
 
 };
