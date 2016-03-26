@@ -3,6 +3,7 @@ Player = function (game, key) {
 
     this.weapons = [];
     this.currentWeapon = null;
+    this.health = 20;
 
     // Add key to change weapon
     var changeKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);

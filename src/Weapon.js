@@ -10,7 +10,7 @@ Weapon.SingleBullet = function (game) {
     this.fireRate = 100;
 
     for (var i = 0; i < 64; i++) {
-        this.add(new Bullet(game, 'playerShot'), true);
+        this.add(new Bullet(game, 'playerShot', 'player'), true);
     }
 
     return this;
@@ -39,7 +39,7 @@ Weapon.EnemySingleBullet = function (game) {
     this.fireRate = 750;
 
     for (var i = 0; i < 64; i++) {
-        this.add(new Bullet(game, 'enemyShot'), true);
+        this.add(new Bullet(game, 'enemyShot', 'enemy'), true);
     }
 
     return this;
