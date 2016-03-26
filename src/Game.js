@@ -21,7 +21,6 @@ BasicGame.Game = function (game) {
 
     this.speed = 300;
     this.weapons = [];
-    this.enemyWeapons = [];
     this.player = null;
     this.enemies = null;
 ;};
@@ -52,10 +51,6 @@ BasicGame.Game.prototype = {
         // [0] : Single Bullet
         this.weapons.push(new Weapon.SingleBullet(this));
 
-        // Create enemies weapons
-        // [0] : Single Bullet
-        this.enemyWeapons.push(new Weapon.EnemySingleBullet(this));
-
         // Assign the basic weapon to the player
         this.player.addWeapon(this.weapons[0]);
 
@@ -68,7 +63,8 @@ BasicGame.Game.prototype = {
     spawnEnemy: function() {
         // Create an enemy and make it start to move
         var enemy = new Enemy(this, 'smallEnemy', 800, 0,
-                              5, this.enemyWeapons[0]);
+                              5,
+                              new Weapon.EnemySingleBullet(this));
         this.physics.arcade.enable(enemy);
         enemy.startMovement();
         this.enemies.add(enemy)
