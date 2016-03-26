@@ -36,7 +36,7 @@ Weapon.EnemySingleBullet = function (game) {
 
     this.nextFire = 0;
     this.bulletSpeed = -500;
-    this.fireRate = 750;
+    this.fireRate = 1000;
 
     for (var i = 0; i < 64; i++) {
         this.add(new Bullet(game, 'enemyShot', 'enemy'), true);
