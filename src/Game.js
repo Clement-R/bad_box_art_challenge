@@ -28,6 +28,7 @@ BasicGame.Game = function (game) {
 BasicGame.Game.prototype = {
     create: function () {
         // Show background
+        this.background = this.add.tileSprite(0, 0, 800, 400, 'background');
 
         // Launch main theme
         this.music = this.add.audio('mainTheme', 0.65, true);
@@ -77,6 +78,7 @@ BasicGame.Game.prototype = {
     },
 
     update: function () {
+        this.background.tilePosition.x -= 2;
     },
 
     quitGame: function (pointer) {
